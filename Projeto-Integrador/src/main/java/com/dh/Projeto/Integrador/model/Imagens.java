@@ -5,26 +5,20 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity @Table
 @Getter
 @Setter
-public class Categoria {
+@Entity @Table
+public class Imagens {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
-    private String descricao;
-    private String url_Img;
+    private String Url;
 
 
-    public Categoria( String titulo, String descricao, String url_Img) {
+    public Imagens(String titulo, String url) {
         this.titulo = titulo;
-        this.descricao = descricao;
-        this.url_Img = url_Img;
-    }
-
-    public Categoria(){
-
+        Url = url;
     }
 }

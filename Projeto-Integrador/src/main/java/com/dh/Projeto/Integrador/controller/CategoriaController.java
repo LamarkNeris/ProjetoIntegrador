@@ -1,7 +1,9 @@
 package com.dh.Projeto.Integrador.controller;
 
-import com.dh.Projeto.Integrador.model.Categoria;
+import com.dh.Projeto.Integrador.model.Categorias;
+import com.dh.Projeto.Integrador.model.Produtos;
 import com.dh.Projeto.Integrador.service.CategoriaService;
+import com.dh.Projeto.Integrador.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,17 +19,17 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @PostMapping
-    public ResponseEntity<Categoria> post(@RequestBody Categoria categoria){
+    public ResponseEntity<Categorias> post(@RequestBody Categorias categoria){
         return ResponseEntity.ok(categoriaService.create(categoria));
     }
 
     @GetMapping
-    public ResponseEntity<List<Categoria>> get(){
+    public ResponseEntity<List<Categorias>> get(){
         return ResponseEntity.ok(categoriaService.selectAll());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Categoria> put(@RequestBody Categoria categoria){
+    public ResponseEntity<Categorias> put(@RequestBody Categorias categoria){
         return ResponseEntity.ok(categoriaService.update(categoria));
     }
 
@@ -36,6 +38,5 @@ public class CategoriaController {
         categoriaService.delete(id);
         return ResponseEntity.ok("Categoria excluída!!");
     }
-
 
 }
