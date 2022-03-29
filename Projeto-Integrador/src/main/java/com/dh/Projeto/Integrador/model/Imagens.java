@@ -13,12 +13,16 @@ public class Imagens {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String titulo;
-    private String Url;
+    private String url;
+    private String descricao;
 
 
-    public Imagens(String titulo, String url) {
-        this.titulo = titulo;
-        Url = url;
+    public Imagens(String url, String descricao) {
+        this.url = url;
+        this.descricao = descricao;
+    }
+
+    public Imagens(){
+
     }
 }

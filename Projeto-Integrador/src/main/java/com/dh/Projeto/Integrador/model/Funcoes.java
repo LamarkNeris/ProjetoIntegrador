@@ -12,10 +12,15 @@ public class Funcoes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer nome;
+    private String nome;
 
 
-    public Funcoes(Integer nome) {
+    public Funcoes(String nome) {
         this.nome = nome;
     }
+
+    public Funcoes(){
+
+    }
 }
+

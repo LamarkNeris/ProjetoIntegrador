@@ -1,12 +1,8 @@
 package com.dh.Projeto.Integrador.service;
 
 import com.dh.Projeto.Integrador.DTO.ProdutoDto;
-import com.dh.Projeto.Integrador.model.Categorias;
-import com.dh.Projeto.Integrador.model.Cidades;
-import com.dh.Projeto.Integrador.model.Produtos;
-import com.dh.Projeto.Integrador.repository.CategoriaRepository;
-import com.dh.Projeto.Integrador.repository.CidadeRepository;
-import com.dh.Projeto.Integrador.repository.ProdutoRepository;
+import com.dh.Projeto.Integrador.model.*;
+import com.dh.Projeto.Integrador.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,32 +18,39 @@ public class ProdutoService {
     private CategoriaRepository categoriaRepository;
     @Autowired
     private CidadeRepository cidadeRepository;
+    @Autowired
+    private CaracteristicasRepository repository;
+
 
     public Produtos createProduto(ProdutoDto produtoDto) {
         Categorias categoria = categoriaRepository.getById(produtoDto.getCategoriaId());
         Cidades cidade = cidadeRepository.getById(produtoDto.getCidadeId());
+        Caracteristicas caracteristicas = repository.save(produtoDto.getCaracteristicas());
         Produtos produto = new Produtos();
         produto.setNome(produtoDto.getNome());
         produto.setDescricao(produtoDto.getDescricao());
         produto.setDescricao(produtoDto.getDescricao());
         produto.setImagens(produtoDto.getImagens());
         produto.setCategorias(categoria);
-        produto.setCaracteristicas(produtoDto.getCaracteristicas());
+        produto.setCaracteristicas(caracteristicas);
         produto.setCidades(cidade);
+        produto.setAvaliacao(produtoDto.getAvaliacao());
 
         return produtoRepository.save(produto);
 
     }
 
     public ProdutoDto converteDto(Produtos produtos) {
+        Caracteristicas caracteristicas = repository.save(produtos.getCaracteristicas());
         ProdutoDto produtoDto = new ProdutoDto();
         produtoDto.setId(produtos.getId());
         produtoDto.setNome(produtos.getNome());
         produtoDto.setDescricao(produtos.getDescricao());
         produtoDto.setImagens(produtos.getImagens());
         produtoDto.setCategoriaId(produtos.getCategorias().getId());
-        produtoDto.setCaracteristicas(produtos.getCaracteristicas());
+        produtoDto.setCaracteristicas(caracteristicas);
         produtoDto.setCidadeId(produtos.getCidades().getId());
+        produtoDto.setAvaliacao(produtos.getAvaliacao());
 
         return produtoDto;
     }
@@ -65,6 +68,7 @@ public class ProdutoService {
             produtosDto.setCategoriaId(listProdutos.get(i).getCategorias().getId());
             produtosDto.setCaracteristicas(listProdutos.get(i).getCaracteristicas());
             produtosDto.setCidadeId(listProdutos.get(i).getCidades().getId());
+            produtosDto.setAvaliacao(listProdutos.get(i).getAvaliacao());
 
             listProdutosDto.add(produtosDto);
         }
@@ -91,6 +95,7 @@ public class ProdutoService {
                 produtosDto.setCategoriaId(listProdutos.get(i).getCategorias().getId());
                 produtosDto.setCaracteristicas(listProdutos.get(i).getCaracteristicas());
                 produtosDto.setCidadeId(listProdutos.get(i).getCidades().getId());
+                produtosDto.setAvaliacao(listProdutos.get(i).getAvaliacao());
 
                 listProDto.add(produtosDto);
             }
@@ -113,6 +118,7 @@ public class ProdutoService {
                 produtosDto.setCategoriaId(listProdutos.get(i).getCategorias().getId());
                 produtosDto.setCaracteristicas(listProdutos.get(i).getCaracteristicas());
                 produtosDto.setCidadeId(listProdutos.get(i).getCidades().getId());
+                produtosDto.setAvaliacao(listProdutos.get(i).getAvaliacao());
 
                 listProDCity.add(produtosDto);
 

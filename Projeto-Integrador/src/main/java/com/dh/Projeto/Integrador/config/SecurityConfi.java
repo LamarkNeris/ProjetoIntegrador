@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfi extends WebSecurityConfigurerAdapter {
 
 
@@ -19,7 +18,7 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("user")
-                .password("{noop}user123").roles("ADMIM");
+                .password("user123").roles("USER");
     }
 
     @Override
@@ -29,7 +28,7 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/produto/**","/categoria/**","/cidade/**","/usuario/**").permitAll()
                 .antMatchers(HttpMethod.PUT,"/produto/**","/categoria/**","/cidade/**","/usuario/**").permitAll()
                 .antMatchers(HttpMethod.DELETE,"/produto/**","/categoria/**","/cidade/**","/usuario/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .httpBasic();
     }

@@ -17,4 +17,6 @@ public interface ProdutoRepository extends JpaRepository<Produtos, Integer> {
 
     @Query("SELECT p FROM Produtos p WHERE p.cidades = ?1")
     List<Produtos> listProdutos(Cidades cidades);
+
+
 }

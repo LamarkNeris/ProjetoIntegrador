@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import javax.persistence.*;
-import java.security.KeyStore;
+
 
 @Entity
 @Table
@@ -21,7 +22,7 @@ public class Usuarios {
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Funcoes funcoes;
 
 
@@ -36,4 +37,5 @@ public class Usuarios {
     public Usuarios(){
 
     }
+
 }

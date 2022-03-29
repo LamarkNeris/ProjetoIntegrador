@@ -43,4 +43,6 @@ public class ProdutoController {
     public ResponseEntity<List<ProdutoDto>> selectProdCity(@PathVariable Integer id) {
         return ResponseEntity.ok(produtoService.listProdCity(id));
     }
+
 }
+

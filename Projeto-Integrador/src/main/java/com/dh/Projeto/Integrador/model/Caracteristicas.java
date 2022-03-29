@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity @Table
 @Getter
@@ -13,12 +15,18 @@ public class Caracteristicas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
-    private String icone;
+    private boolean wifi;
+    private boolean ar_condicionado;
+    private boolean tv_a_cabo;
 
-    public Caracteristicas(String nome, String icone) {
-        this.nome = nome;
-        this.icone = icone;
+
+    public Caracteristicas( boolean wifi, boolean ar_condicionado, boolean tv_a_cabo) {
+        this.wifi = wifi;
+        this.ar_condicionado = ar_condicionado;
+        this.tv_a_cabo = tv_a_cabo;
+    }
+
+    public Caracteristicas(){
 
     }
 }

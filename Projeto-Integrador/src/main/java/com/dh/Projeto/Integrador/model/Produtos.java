@@ -16,23 +16,26 @@ public class Produtos {
     private Integer id;
     private String nome;
     private String descricao;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Imagens> imagens;
     @ManyToOne
     private Categorias categorias;
-    @ManyToMany
-    private List<Caracteristicas> caracteristicas;
+    @OneToOne
+    private Caracteristicas caracteristicas;
     @ManyToOne
     private Cidades cidades;
+    private double avaliacao;
 
 
-    public Produtos(String nome, String descricao, List<Imagens> imagens, Categorias categorias, List<Caracteristicas> caracteristicas, Cidades cidades) {
+    public Produtos(String nome, String descricao, List<Imagens> imagens, Categorias categorias, Caracteristicas caracteristicas,
+                    Cidades cidades, double avaliacao) {
         this.nome = nome;
         this.descricao = descricao;
         this.imagens = imagens;
         this.categorias = categorias;
         this.caracteristicas = caracteristicas;
         this.cidades = cidades;
+        this.avaliacao = avaliacao;
 
     }
     public Produtos(){
