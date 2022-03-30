@@ -33,7 +33,7 @@ public class CategoriaService {
     public Categorias update(Categorias categoria){
         Categorias categoria1 = categoriaRepository.getById(categoria.getId());
         categoria1.setTitulo(categoria.getTitulo());
-        categoria1.setDescricao(categoria.getDescricao());
+        categoria1.setDisponibilidade(categoria.getDisponibilidade());
         categoria1.setUrl_Img(categoria.getUrl_Img());
 
         return categoriaRepository.save(categoria1);

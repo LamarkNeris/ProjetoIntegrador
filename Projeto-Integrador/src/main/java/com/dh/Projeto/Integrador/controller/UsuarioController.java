@@ -2,36 +2,61 @@ package com.dh.Projeto.Integrador.controller;
 
 import com.dh.Projeto.Integrador.model.Usuarios;
 import com.dh.Projeto.Integrador.service.UsuarioService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.Date;
+import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    private final PasswordEncoder encoder;
-
-    public UsuarioController(UsuarioService usuarioService, PasswordEncoder encoder) {
-        this.usuarioService = usuarioService;
-        this.encoder = encoder;
-    }
-
 
     @PostMapping
     public ResponseEntity<Usuarios> create(@RequestBody Usuarios usuarios){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
         usuarios.setSenha(encoder.encode(usuarios.getSenha()));
         usuarioService.createUser(usuarios);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    @GetMapping
+    public ResponseEntity<List<Usuarios>> selectall(){
+        return ResponseEntity.ok(usuarioService.AllUsers());
+    }
+
+    @PostMapping("/jwt")
+    public ResponseEntity<String> getJwt(@RequestBody Usuarios usuarios){
+        Usuarios usuario = usuarioService.checkUser(usuarios);
+
+        if (usuario != null){
+
+            String KEY = "chave_Jwt";
+            Long timer = System.currentTimeMillis();
+            String jwt = Jwts.builder()
+                    .signWith(SignatureAlgorithm.HS256, KEY)
+                    .setSubject(usuario.getEmail())
+                    .setIssuedAt(new Date(timer))
+                    .setExpiration(new Date(timer + 900000))
+                    .claim(KEY, usuario)
+                    .compact();
+
+            return ResponseEntity.ok(jwt);
+
+        }
+        return ResponseEntity.ok("Usuario não existe!");
+    }
+
 }

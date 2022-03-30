@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table
+@Table(name = "email", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 @Getter
 @Setter
 public class Usuarios {
@@ -19,6 +19,7 @@ public class Usuarios {
     private Integer id;
     private String nome;
     private String sobrenome;
+    @Column(unique=true)
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;

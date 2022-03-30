@@ -14,13 +14,13 @@ public class Categorias {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
-    private String descricao;
+    private String disponibilidade;
     private String url_Img;
 
 
-    public Categorias(String titulo, String descricao, String url_Img) {
+    public Categorias(String titulo, String disponibilidade, String url_Img) {
         this.titulo = titulo;
-        this.descricao = descricao;
+        this.disponibilidade = disponibilidade;
         this.url_Img = url_Img;
     }
 
