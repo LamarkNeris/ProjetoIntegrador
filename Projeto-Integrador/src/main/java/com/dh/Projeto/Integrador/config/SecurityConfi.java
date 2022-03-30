@@ -21,24 +21,16 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.POST).authenticated()
-                .antMatchers(HttpMethod.GET)
-                .authenticated()
-                .and();
-                http.csrf().disable();
+        http.csrf().disable().authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
+                .antMatchers(HttpMethod.GET,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
+                .antMatchers(HttpMethod.PUT,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
+                .anyRequest().permitAll()
+                .and()
+                .httpBasic();
 
 
     }
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource(){
-//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//
-//        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-//        source.registerCorsConfiguration("/**", corsConfiguration);
-//
-//        return source;
-//    }
-
 
 }
