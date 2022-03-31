@@ -1,12 +1,14 @@
-package com.dh.Projeto.Integrador.DTO;
+package com.dh.Projeto.Integrador.model;
 
 import com.dh.Projeto.Integrador.model.Usuarios;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 
+@Table(name = "email", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 @Entity
 @Getter @Setter
 public class UserAdmin {
@@ -14,13 +16,12 @@ public class UserAdmin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String username;
-    private String password;
+    @Column(unique=true)
+    private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String senha;
 
-    public UserAdmin(String userName, String password) {
-        this.username = userName;
-        this.password = password;
-    }
+
     public UserAdmin(){
 
     }

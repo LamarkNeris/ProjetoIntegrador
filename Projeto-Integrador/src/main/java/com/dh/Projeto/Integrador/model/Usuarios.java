@@ -9,29 +9,23 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "email", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
+@Table
 @Getter
 @Setter
-public class Usuarios {
+public class Usuarios extends UserAdmin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String sobrenome;
-    @Column(unique=true)
-    private String email;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String senha;
     @ManyToOne(cascade = CascadeType.ALL)
     private Funcoes funcoes;
 
 
-    public Usuarios(String nome, String sobrenome, String email, String senha, Funcoes funcoes) {
+    public Usuarios(String nome, String sobrenome, Funcoes funcoes) {
         this.nome = nome;
         this.sobrenome = sobrenome;
-        this.email = email;
-        this.senha = senha;
         this.funcoes = funcoes;
     }
 

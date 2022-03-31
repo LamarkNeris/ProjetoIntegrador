@@ -16,36 +16,35 @@ public class Caracteristicas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private boolean wifi;
-    private boolean ar_condicionado;
-    private boolean tv_a_cabo;
+    private boolean arCondicionado;
+    private boolean tvACabo;
     private boolean piscina;
     private boolean restaurante;
-    private boolean cafe_da_manha;
+    private boolean cafeDaManha;
     private boolean estacionamento;
-    private boolean permite_animais;
+    private boolean permiteAnimais;
     private boolean hidromassagem;
-    private boolean quartos_familia;
-    private boolean area_fumantes;
+    private boolean quartosFamilia;
+    private boolean areaFumantes;
     private boolean bar;
     private boolean churrasqueira;
     private boolean lavanderia;
 
 
-    public Caracteristicas(boolean wifi, boolean ar_condicionado, boolean tv_a_cabo, boolean piscina,
-                           boolean restaurante, boolean cafe_da_manha, boolean estacionamento, boolean permite_animais,
-                           boolean hidromassagem, boolean quartos_familia, boolean area_fumantes, boolean bar, boolean churrasqueira,
-                           boolean lavanderia) {
+    public Caracteristicas(boolean wifi, boolean arCondicionado, boolean tvACabo, boolean piscina, boolean restaurante,
+                           boolean cafeDaManha, boolean estacionamento, boolean permiteAnimais, boolean hidromassagem,
+                           boolean quartosFamilia, boolean areaFumantes, boolean bar, boolean churrasqueira, boolean lavanderia) {
         this.wifi = wifi;
-        this.ar_condicionado = ar_condicionado;
-        this.tv_a_cabo = tv_a_cabo;
+        this.arCondicionado = arCondicionado;
+        this.tvACabo = tvACabo;
         this.piscina = piscina;
         this.restaurante = restaurante;
-        this.cafe_da_manha = cafe_da_manha;
+        this.cafeDaManha = cafeDaManha;
         this.estacionamento = estacionamento;
-        this.permite_animais = permite_animais;
+        this.permiteAnimais = permiteAnimais;
         this.hidromassagem = hidromassagem;
-        this.quartos_familia = quartos_familia;
-        this.area_fumantes = area_fumantes;
+        this.quartosFamilia = quartosFamilia;
+        this.areaFumantes = areaFumantes;
         this.bar = bar;
         this.churrasqueira = churrasqueira;
         this.lavanderia = lavanderia;
