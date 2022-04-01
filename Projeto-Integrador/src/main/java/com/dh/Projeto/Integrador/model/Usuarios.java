@@ -29,6 +29,10 @@ public class Usuarios extends UserAdmin {
         this.funcoes = funcoes;
     }
 
+    public Usuarios(){
+
+    }
+
 
 
 }
