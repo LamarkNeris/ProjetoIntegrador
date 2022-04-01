@@ -4,6 +4,7 @@ import com.dh.Projeto.Integrador.model.UserAdmin;
 import com.dh.Projeto.Integrador.repository.UserAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -25,12 +27,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         UserAdmin usuario = adminrepository.findByEmail(email);
 
-        Set<GrantedAuthority> grantList = new HashSet<>();
-        grantList.add(new SimpleGrantedAuthority("ADMIN"));
+         List<GrantedAuthority> authoritiesListAdmin = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
+        List<GrantedAuthority> authoritiesListUser = AuthorityUtils.createAuthorityList("ROLE_USER");
 
-        UserDetails user = new User(usuario.getEmail(),("{noop}" + usuario.getSenha()), grantList );
+//        Set<GrantedAuthority> grantList = new HashSet<>();
+//        grantList.add(new SimpleGrantedAuthority("ADMIN"));
+//
+//        UserDetails user = new User(usuario.getEmail(),("{noop}" + usuario.getSenha()), grantList );
 
-        return user;
+        return new User(usuario.getEmail(), usuario.getSenha(),
+                usuario.isAdmin() ? authoritiesListAdmin : authoritiesListUser);
     }
 
 }

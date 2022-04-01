@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Configuration
@@ -21,29 +22,25 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfi extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/usuario/").permitAll()
-                .antMatchers(HttpMethod.GET,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
-                .antMatchers(HttpMethod.PUT,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
-                .antMatchers(HttpMethod.DELETE,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
-                .anyRequest().permitAll()
+                .antMatchers(HttpMethod.GET,"/usuario/").permitAll()
+//                .antMatchers(HttpMethod.PUT,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
+//                .antMatchers(HttpMethod.DELETE,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic();
 
 
         }
 
-    @Autowired
-    public void ConfigureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.inMemoryAuthentication()
-                .withUser("user").password("senha").roles("USER")
-                .and()
-                .withUser("admin").password("senha").roles("USER", "ADMIN");
-
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
     }
-
 }

@@ -1,9 +1,7 @@
 package com.dh.Projeto.Integrador.service;
 
-import com.dh.Projeto.Integrador.DTO.UsuarioSenha;
-import com.dh.Projeto.Integrador.model.UserAdmin;
+import com.dh.Projeto.Integrador.Admin.UsuarioSenha;
 import com.dh.Projeto.Integrador.model.Usuarios;
-import com.dh.Projeto.Integrador.repository.UserAdminRepository;
 import com.dh.Projeto.Integrador.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
