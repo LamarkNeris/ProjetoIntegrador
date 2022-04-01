@@ -32,7 +32,7 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/usuario/").permitAll()
 //                .antMatchers(HttpMethod.PUT,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
 //                .antMatchers(HttpMethod.DELETE,"/produto/","/categoria/","/cidade/","/usuario/").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .httpBasic();
 
