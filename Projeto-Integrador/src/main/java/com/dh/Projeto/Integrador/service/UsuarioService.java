@@ -13,6 +13,9 @@ import java.util.List;
 public class UsuarioService {
 
     @Autowired
+    private BCryptPasswordEncoder encoder;
+
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     public Usuarios createUser(Usuarios usuarios) {
@@ -30,13 +33,10 @@ public class UsuarioService {
         Usuarios user = usuarioRepository.findByEmail(usuario.getEmail());
 
         if(user == null) {
-
             throw new RuntimeException("usuario nulo");
         }
-        if (new BCryptPasswordEncoder().matches(user.getSenha(), usuario.getSenha())) {
-
+        if (!encoder.matches(usuario.getSenha(), user.getSenha())) {
             throw new RuntimeException("senha incorreta");
-
         }
 
         return user;

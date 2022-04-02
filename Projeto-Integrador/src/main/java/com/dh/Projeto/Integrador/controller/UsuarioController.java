@@ -1,6 +1,7 @@
 package com.dh.Projeto.Integrador.controller;
 
 import com.dh.Projeto.Integrador.Admin.UsuarioSenha;
+import com.dh.Projeto.Integrador.config.JwtUtil;
 import com.dh.Projeto.Integrador.model.Usuarios;
 import com.dh.Projeto.Integrador.service.UsuarioService;
 import io.jsonwebtoken.Jwts;
@@ -8,6 +9,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +27,19 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private UserDetailsService userDetailsService;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @PostMapping
     public ResponseEntity<Usuarios> create(@RequestBody Usuarios usuarios){
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
         usuarios.setSenha(encoder.encode(usuarios.getSenha()));
         usuarioService.createUser(usuarios);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -35,25 +50,18 @@ public class UsuarioController {
     }
 
     @PostMapping("/jwt")
-    public ResponseEntity<String> getJwt(@RequestBody UsuarioSenha usuarios){
-        Usuarios usuario = usuarioService.checkUser(usuarios);
-
-        if (usuario != null){
-
-            String KEY = "chave_Jwt";
-            Long timer = System.currentTimeMillis();
-            String jwt = Jwts.builder()
-                    .signWith(SignatureAlgorithm.HS256, KEY)
-                    .setSubject(usuario.getEmail())
-                    .setIssuedAt(new Date(timer))
-                    .setExpiration(new Date(timer + 900000))
-                    .claim(KEY, usuario)
-                    .compact();
-
-            return ResponseEntity.ok(jwt);
-
+    public ResponseEntity<String> getJwt(@RequestBody UsuarioSenha usuarios) throws Exception{ {
+            try {
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usuarios.getEmail(), usuarios.getSenha()));
+            }catch (BadCredentialsException e) {
+                throw new Exception("Incorrect", e);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            final UserDetails userDetails =
+                    userDetailsService.loadUserByUsername(usuarios.getEmail());
+            return ResponseEntity.ok(jwtUtil.generateToken(userDetails));
         }
-        return ResponseEntity.ok("Usuario não existe!");
     }
-
 }
