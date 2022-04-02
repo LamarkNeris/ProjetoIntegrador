@@ -41,7 +41,7 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/produto/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/cidade/**").permitAll()
                 .anyRequest()
-                .authenticated()
+                .permitAll()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
