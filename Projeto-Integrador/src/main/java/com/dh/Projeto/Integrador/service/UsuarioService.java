@@ -20,8 +20,6 @@ public class UsuarioService {
 
     public Usuarios createUser(Usuarios usuarios) {
 
-//        Usuarios usuario = new Usuarios(usuarios.getNome(), usuarios.getSobrenome(), usuarios.getEmail(),
-//                usuarios.getSenha(), usuarios.getFuncoes());
         return usuarioRepository.save(usuarios);
     }
 
@@ -29,16 +27,4 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuarios checkUser(UsuarioSenha usuario) {
-        Usuarios user = usuarioRepository.findByEmail(usuario.getEmail());
-
-        if(user == null) {
-            throw new RuntimeException("usuario nulo");
-        }
-        if (!encoder.matches(usuario.getSenha(), user.getSenha())) {
-            throw new RuntimeException("senha incorreta");
-        }
-
-        return user;
-    }
 }
