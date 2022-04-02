@@ -1,4 +1,4 @@
-package com.dh.Projeto.Integrador.config;
+package com.dh.Projeto.Integrador.configJwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

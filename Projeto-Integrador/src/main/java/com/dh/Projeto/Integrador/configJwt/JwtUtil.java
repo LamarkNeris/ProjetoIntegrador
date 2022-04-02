@@ -1,5 +1,6 @@
-package com.dh.Projeto.Integrador.config;
+package com.dh.Projeto.Integrador.configJwt;
 
+import com.dh.Projeto.Integrador.model.Usuarios;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -42,7 +43,7 @@ public class JwtUtil {
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new
                         Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 900_000))
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY ).compact();
     }
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUserName(token);

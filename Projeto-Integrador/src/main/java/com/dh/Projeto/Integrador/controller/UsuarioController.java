@@ -1,11 +1,9 @@
 package com.dh.Projeto.Integrador.controller;
 
 import com.dh.Projeto.Integrador.Admin.UsuarioSenha;
-import com.dh.Projeto.Integrador.config.JwtUtil;
+import com.dh.Projeto.Integrador.configJwt.JwtUtil;
 import com.dh.Projeto.Integrador.model.Usuarios;
 import com.dh.Projeto.Integrador.service.UsuarioService;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController

@@ -1,4 +1,4 @@
-package com.dh.Projeto.Integrador.config;
+package com.dh.Projeto.Integrador.configJwt;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
