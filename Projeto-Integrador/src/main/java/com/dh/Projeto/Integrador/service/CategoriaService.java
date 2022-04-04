@@ -7,6 +7,7 @@ import com.dh.Projeto.Integrador.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -15,7 +16,7 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-
+    @Transactional
     public Categorias create(Categorias categoria){
         return categoriaRepository.save(categoria);
     }

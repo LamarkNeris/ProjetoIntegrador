@@ -35,7 +35,6 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> remove(@PathVariable Integer id){
         categoriaService.delete(id);
         return ResponseEntity.ok("Categoria excluída!!");

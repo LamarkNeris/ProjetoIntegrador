@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -18,6 +19,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Transactional
     public Usuarios createUser(Usuarios usuarios) {
 
         return usuarioRepository.save(usuarios);
@@ -25,6 +27,12 @@ public class UsuarioService {
 
     public List<Usuarios> AllUsers() {
         return usuarioRepository.findAll();
+    }
+
+    public Usuarios checkUser(Usuarios usuario){
+        Usuarios user = usuarioRepository.findByEmail(usuario.getEmail());
+
+        return user;
     }
 
 }

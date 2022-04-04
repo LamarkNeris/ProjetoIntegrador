@@ -47,7 +47,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/jwt")
-    public ResponseEntity<String> getJwt(@RequestBody UsuarioSenha usuarios) throws Exception{ {
+    public ResponseEntity<String> getJwt(@RequestBody Usuarios usuarios) throws Exception{ {
+
             try {
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usuarios.getEmail(), usuarios.getSenha()));
             }catch (BadCredentialsException e) {

@@ -6,6 +6,7 @@ import com.dh.Projeto.Integrador.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class ProdutoService {
     @Autowired
     private CaracteristicasRepository repository;
 
-
+    @Transactional
     public Produtos createProduto(ProdutoDto produtoDto) {
         Categorias categoria = categoriaRepository.getById(produtoDto.getCategoriaId());
         Cidades cidade = cidadeRepository.getById(produtoDto.getCidadeId());

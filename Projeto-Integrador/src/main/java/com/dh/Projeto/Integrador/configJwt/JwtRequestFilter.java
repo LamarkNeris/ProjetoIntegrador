@@ -1,5 +1,6 @@
 package com.dh.Projeto.Integrador.configJwt;
 
+import com.dh.Projeto.Integrador.model.Usuarios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +24,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtUtil jwtUtil;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest,

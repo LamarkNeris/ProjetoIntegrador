@@ -26,10 +26,12 @@ public class Usuarios {
     @ManyToOne(cascade = CascadeType.ALL)
     private Funcoes funcoes;
 
+
     public Usuarios(){
 
     }
 
 
-
+    public Usuarios(String nome, String sobrenome, String email, String senha, Funcoes funcoes) {
+    }
 }
