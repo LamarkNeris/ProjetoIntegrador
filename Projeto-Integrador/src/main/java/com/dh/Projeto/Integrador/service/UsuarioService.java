@@ -29,10 +29,5 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuarios checkUser(Usuarios usuario){
-        Usuarios user = usuarioRepository.findByEmail(usuario.getEmail());
-
-        return user;
-    }
 
 }

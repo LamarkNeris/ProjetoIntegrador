@@ -17,7 +17,6 @@ import java.util.Map;
 @Component
 public class JwtUtil {
 
-    private Usuarios usuario;
 
     @Autowired
     private  UsuarioRepository repository;

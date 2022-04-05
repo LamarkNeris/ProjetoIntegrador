@@ -16,7 +16,9 @@ public class Reservas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Temporal(TemporalType.DATE)
     private Date checkIn;
+    @Temporal(TemporalType.DATE)
     private Date checkOut;
     @ManyToOne
     @JoinColumn(name = "produto_id")

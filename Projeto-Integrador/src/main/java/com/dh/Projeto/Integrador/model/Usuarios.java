@@ -31,7 +31,4 @@ public class Usuarios {
 
     }
 
-
-    public Usuarios(String nome, String sobrenome, String email, String senha, Funcoes funcoes) {
-    }
 }
