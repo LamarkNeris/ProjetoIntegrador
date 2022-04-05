@@ -19,6 +19,10 @@ public class CidadeService {
         return cidadeRepository.save(cidades);
     }
 
+    public Cidades findId(Integer id){
+        return cidadeRepository.getById(id);
+    }
+
     public List<Cidades> selectAllCidades(){
         return cidadeRepository.findAll();
     }
