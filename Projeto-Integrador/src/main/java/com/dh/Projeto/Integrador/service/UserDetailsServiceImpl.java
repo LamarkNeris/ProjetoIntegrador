@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         Usuarios usuario = adminrepository.findByEmail(email);
 
-        List<GrantedAuthority> authoritiesListUser = List.of(new SimpleGrantedAuthority("TEST"));
+        List<GrantedAuthority> authoritiesListUser = List.of(new SimpleGrantedAuthority("ADMIN"));
 
 //        Set<GrantedAuthority> grantList = new HashSet<>();
 //        grantList.add(new SimpleGrantedAuthority("ADMIN"));

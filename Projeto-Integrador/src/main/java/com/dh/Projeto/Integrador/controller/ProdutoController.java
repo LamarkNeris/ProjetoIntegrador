@@ -1,14 +1,17 @@
 package com.dh.Projeto.Integrador.controller;
 
 import com.dh.Projeto.Integrador.DTO.ProdutoDto;
-import com.dh.Projeto.Integrador.model.Cidades;
 import com.dh.Projeto.Integrador.model.Produtos;
+import com.dh.Projeto.Integrador.model.Reservas;
 import com.dh.Projeto.Integrador.service.ProdutoService;
+import com.dh.Projeto.Integrador.service.ReservaService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -17,6 +20,9 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoService produtoService;
+
+    @Autowired
+    private ReservaService reservaService;
 
     @PostMapping
     public ResponseEntity<Produtos> post(@RequestBody ProdutoDto produtoDto) {
@@ -43,6 +49,13 @@ public class ProdutoController {
     public ResponseEntity<List<ProdutoDto>> selectProdCity(@PathVariable Integer id) {
         return ResponseEntity.ok(produtoService.listProdCity(id));
     }
+
+    @GetMapping("filtro")
+    public ResponseEntity<List<Reservas>> selectDate(@RequestParam @JsonFormat( pattern = "dd-MM-yyyy")Date checkIn,
+                                                     @RequestParam @JsonFormat( pattern = "dd-MM-yyyy") Date checkOut, @RequestParam Integer id) {
+        return ResponseEntity.ok(produtoService.listDate( checkIn, checkOut, id));
+    }
+
 
 }
 

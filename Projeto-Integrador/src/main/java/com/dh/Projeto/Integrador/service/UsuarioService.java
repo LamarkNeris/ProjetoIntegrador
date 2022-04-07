@@ -29,5 +29,4 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-
 }

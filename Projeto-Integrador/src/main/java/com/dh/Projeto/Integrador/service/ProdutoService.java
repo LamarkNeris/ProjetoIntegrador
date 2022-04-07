@@ -22,6 +22,8 @@ public class ProdutoService {
     private CidadeRepository cidadeRepository;
     @Autowired
     private CaracteristicasRepository repository;
+    @Autowired
+    private ReservaRepository reservaRepository;
 
     @Transactional
     public Produtos createProduto(ProdutoDto produtoDto) {
@@ -129,6 +131,12 @@ public class ProdutoService {
         return listProDCity;
     }
 
+    public List<Reservas> listDate(Date checkIn, Date checkOut, Integer id) {
 
+
+        List<Reservas> listaData = reservaRepository.findBycheckInLessThanEqualAndCheckOutGreaterThanEqualAndProdutoId(checkIn, checkOut, id);
+
+        return listaData;
+    }
 
 }
