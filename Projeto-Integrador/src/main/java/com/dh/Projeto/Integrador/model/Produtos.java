@@ -25,10 +25,12 @@ public class Produtos {
     @ManyToOne
     private Cidades cidades;
     private double avaliacao;
+    private Integer latitude;
+    private Integer longitude;
 
 
     public Produtos(String nome, String descricao, List<Imagens> imagens, Categorias categorias, Caracteristicas caracteristicas,
-                    Cidades cidades, double avaliacao) {
+                    Cidades cidades, double avaliacao, Integer latitude, Integer longitude) {
         this.nome = nome;
         this.descricao = descricao;
         this.imagens = imagens;
@@ -36,6 +38,8 @@ public class Produtos {
         this.caracteristicas = caracteristicas;
         this.cidades = cidades;
         this.avaliacao = avaliacao;
+        this.latitude = latitude;
+        this.longitude = longitude;
 
     }
     public Produtos(){

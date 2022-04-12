@@ -1,6 +1,5 @@
 package com.dh.Projeto.Integrador.controller;
 
-import com.dh.Projeto.Integrador.Admin.UsuarioSenha;
 import com.dh.Projeto.Integrador.configJwt.JwtUtil;
 import com.dh.Projeto.Integrador.model.Usuarios;
 import com.dh.Projeto.Integrador.service.UsuarioService;

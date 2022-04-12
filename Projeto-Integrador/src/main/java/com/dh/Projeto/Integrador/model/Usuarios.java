@@ -24,6 +24,7 @@ public class Usuarios {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "funcoes_nome")
     private Funcoes funcoes;
 
 
@@ -31,4 +32,11 @@ public class Usuarios {
 
     }
 
+    public Usuarios(String nome, String sobrenome, String email, String senha, Funcoes funcoes) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.senha = senha;
+        this.funcoes = funcoes;
+    }
 }

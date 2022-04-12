@@ -21,6 +21,8 @@ public class ProdutoDto {
     private Caracteristicas caracteristicas;
     private Integer cidadeId;
     private double avaliacao;
+    private Integer latitude;
+    private Integer longitude;
 
 
 }

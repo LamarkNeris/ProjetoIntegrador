@@ -29,7 +29,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.selectAll());
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<Categorias> put(@RequestBody Categorias categoria){
         return ResponseEntity.ok(categoriaService.update(categoria));
     }

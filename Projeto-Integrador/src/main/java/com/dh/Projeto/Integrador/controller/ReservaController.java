@@ -34,4 +34,10 @@ public class ReservaController {
         return ResponseEntity.ok(reservaService.listarPorProduto(id));
     }
 
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<List<ReservaDto>> getPorUsuario(@PathVariable Integer id){
+
+        return ResponseEntity.ok(reservaService.listarPorUsuario(id));
+    }
+
 }

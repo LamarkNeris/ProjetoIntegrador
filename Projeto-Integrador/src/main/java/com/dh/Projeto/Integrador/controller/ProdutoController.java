@@ -56,6 +56,11 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.listDate( checkIn, checkOut, id));
     }
 
+    @PutMapping
+    public ResponseEntity<Produtos> update(@RequestBody ProdutoDto produtoDto) {
+        return ResponseEntity.ok(produtoService.updateProduto(produtoDto));
+    }
+
 
 }
 

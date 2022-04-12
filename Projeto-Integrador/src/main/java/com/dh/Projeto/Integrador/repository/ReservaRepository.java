@@ -14,11 +14,17 @@ import java.util.List;
 @Repository
 public interface ReservaRepository extends JpaRepository<Reservas, Integer> {
 
-    @Query(value = "SELECT * FROM tb_reservas " +
-            "INNER JOIN tb_produtos " +
-            "ON tb_reservas.produto_id=tb_produtos.id " +
-            "WHERE tb_produtos.id=:id", nativeQuery = true)
+    @Query(value = "SELECT * FROM reservas " +
+            "INNER JOIN produtos " +
+            "ON reservas.produto_id=produtos.id " +
+            "WHERE produtos.id=:id", nativeQuery = true)
     List<Reservas> listarReservasIdProduto(@Param("id") Integer id);
+
+    @Query(value = "SELECT * FROM reservas " +
+            "INNER JOIN usuarios " +
+            "ON reservas.usuario_id=usuarios.id " +
+            "WHERE usuarios.id=:id", nativeQuery = true)
+    List<Reservas> listarReservasIdUsuario(@Param("id") Integer id);
 
 
     List<Reservas> findBycheckInLessThanEqualAndCheckOutGreaterThanEqualAndProdutoId(Date checkIn, Date checkOut, Integer produtoId);

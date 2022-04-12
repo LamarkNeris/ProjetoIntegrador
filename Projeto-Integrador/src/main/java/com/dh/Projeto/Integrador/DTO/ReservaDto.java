@@ -3,6 +3,8 @@ package com.dh.Projeto.Integrador.DTO;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -15,7 +17,8 @@ public class ReservaDto {
     private Date checkOut;
     private Integer produtoId;
     private Integer usuarioId;
-    private LocalTime registroHora;
+    private String horaCheckIn;
+
 
 
 }

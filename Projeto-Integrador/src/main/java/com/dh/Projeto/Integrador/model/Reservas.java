@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalTime;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -26,16 +26,16 @@ public class Reservas {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuarios usuario;
-    private LocalTime registroHora;
+    private String horaCheckIn;
 
-    public Reservas(Date checkIn, Date checkOut, Produtos produto, Usuarios usuario, LocalTime registroHora) {
+
+    public Reservas(Date checkIn, Date checkOut, Produtos produto, Usuarios usuario, String horaCheckIn) {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.produto = produto;
         this.usuario = usuario;
-        this.registroHora = registroHora;
+        this.horaCheckIn = horaCheckIn;
     }
-
 
     public Reservas() {
     }

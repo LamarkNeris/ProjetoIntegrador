@@ -14,13 +14,13 @@ public class Cidades {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    private String rua;
     private String pais;
 
-    public Cidades(String nome, String pais, String rua) {
+
+    public Cidades(String nome, String pais) {
         this.nome = nome;
         this.pais = pais;
-        this.rua = rua;
+
     }
 
     public Cidades(){

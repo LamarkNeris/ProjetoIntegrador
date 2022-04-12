@@ -39,9 +39,29 @@ public class ProdutoService {
         produto.setCaracteristicas(caracteristicas);
         produto.setCidades(cidade);
         produto.setAvaliacao(produtoDto.getAvaliacao());
+        produto.setLatitude(produtoDto.getLatitude());
+        produto.setLongitude(produtoDto.getLongitude());
 
         return produtoRepository.save(produto);
 
+    }
+    public Produtos updateProduto(ProdutoDto produtoDto){
+        Produtos produto = produtoRepository.getById(produtoDto.getId());
+        Categorias categoria = categoriaRepository.getById(produtoDto.getCategoriaId());
+        Cidades cidade = cidadeRepository.getById(produtoDto.getCidadeId());
+        Caracteristicas caracteristicas = repository.save(produtoDto.getCaracteristicas());
+        produto.setNome(produtoDto.getNome());
+        produto.setDescricao(produtoDto.getDescricao());
+        produto.setDescricao(produtoDto.getDescricao());
+        produto.setImagens(produtoDto.getImagens());
+        produto.setCategorias(categoria);
+        produto.setCaracteristicas(caracteristicas);
+        produto.setCidades(cidade);
+        produto.setAvaliacao(produtoDto.getAvaliacao());
+        produto.setLatitude(produtoDto.getLatitude());
+        produto.setLongitude(produtoDto.getLongitude());
+
+        return produtoRepository.save(produto);
     }
 
     public ProdutoDto converteDto(Produtos produtos) {
@@ -55,6 +75,8 @@ public class ProdutoService {
         produtoDto.setCaracteristicas(caracteristicas);
         produtoDto.setCidadeId(produtos.getCidades().getId());
         produtoDto.setAvaliacao(produtos.getAvaliacao());
+        produtoDto.setLatitude(produtos.getLatitude());
+        produtoDto.setLongitude(produtos.getLongitude());
 
         return produtoDto;
     }
@@ -73,6 +95,8 @@ public class ProdutoService {
             produtosDto.setCaracteristicas(listProdutos.get(i).getCaracteristicas());
             produtosDto.setCidadeId(listProdutos.get(i).getCidades().getId());
             produtosDto.setAvaliacao(listProdutos.get(i).getAvaliacao());
+            produtosDto.setLatitude(listProdutos.get(i).getLatitude());
+            produtosDto.setLongitude(listProdutos.get(i).getLongitude());
 
             listProdutosDto.add(produtosDto);
         }
@@ -100,6 +124,8 @@ public class ProdutoService {
                 produtosDto.setCaracteristicas(listProdutos.get(i).getCaracteristicas());
                 produtosDto.setCidadeId(listProdutos.get(i).getCidades().getId());
                 produtosDto.setAvaliacao(listProdutos.get(i).getAvaliacao());
+                produtosDto.setLatitude(listProdutos.get(i).getLatitude());
+                produtosDto.setLongitude(listProdutos.get(i).getLongitude());
 
                 listProDto.add(produtosDto);
             }
@@ -123,6 +149,8 @@ public class ProdutoService {
                 produtosDto.setCaracteristicas(listProdutos.get(i).getCaracteristicas());
                 produtosDto.setCidadeId(listProdutos.get(i).getCidades().getId());
                 produtosDto.setAvaliacao(listProdutos.get(i).getAvaliacao());
+                produtosDto.setLatitude(listProdutos.get(i).getLatitude());
+                produtosDto.setLongitude(listProdutos.get(i).getLongitude());
 
                 listProDCity.add(produtosDto);
 
@@ -132,7 +160,6 @@ public class ProdutoService {
     }
 
     public List<Reservas> listDate(Date checkIn, Date checkOut, Integer id) {
-
 
         List<Reservas> listaData = reservaRepository.findBycheckInLessThanEqualAndCheckOutGreaterThanEqualAndProdutoId(checkIn, checkOut, id);
 

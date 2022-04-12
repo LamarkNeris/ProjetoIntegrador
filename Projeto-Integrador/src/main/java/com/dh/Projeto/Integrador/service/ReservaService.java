@@ -44,7 +44,7 @@ public class ReservaService {
         reserva.setCheckOut(reservaDto.getCheckOut());
         reserva.setProduto(produto);
         reserva.setUsuario(usuario);
-        reserva.setRegistroHora(LocalTime.now());
+        reserva.setHoraCheckIn(reservaDto.getHoraCheckIn());
 
         return reservaRepository.save(reserva);
 
@@ -66,11 +66,35 @@ public class ReservaService {
                 reservaDto.setCheckOut(listReservas.get(i).getCheckOut());
                 reservaDto.setProdutoId(listReservas.get(i).getProduto().getId());
                 reservaDto.setUsuarioId(listReservas.get(i).getUsuario().getId());
+                reservaDto.setHoraCheckIn(listReservas.get(i).getHoraCheckIn());
 
                 listReservasIdProduto.add(reservaDto);
             }
         }
         return listReservasIdProduto;
+    }
+    public List<ReservaDto> listarPorUsuario(Integer id) {
+
+        Usuarios usuario = usuarioRepository.getById(id);
+        List<Reservas> listReservas = reservaRepository.listarReservasIdUsuario(usuario.getId());
+
+        List<ReservaDto> listReservasIdUsuario = new ArrayList<>();
+
+        if (id == usuario.getId()) {
+            for (int i = 0; i < listReservas.size(); i++) {
+                ReservaDto reservaDto = new ReservaDto();
+
+                reservaDto.setId(listReservas.get(i).getId());
+                reservaDto.setCheckIn(listReservas.get(i).getCheckIn());
+                reservaDto.setCheckOut(listReservas.get(i).getCheckOut());
+                reservaDto.setProdutoId(listReservas.get(i).getProduto().getId());
+                reservaDto.setUsuarioId(listReservas.get(i).getUsuario().getId());
+                reservaDto.setHoraCheckIn(listReservas.get(i).getHoraCheckIn());
+
+                listReservasIdUsuario.add(reservaDto);
+            }
+        }
+        return listReservasIdUsuario;
     }
 
 }
