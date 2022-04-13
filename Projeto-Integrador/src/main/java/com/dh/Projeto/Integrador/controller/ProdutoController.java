@@ -52,7 +52,8 @@ public class ProdutoController {
 
     @GetMapping("filtro")
     public ResponseEntity<List<Reservas>> selectDate(@RequestParam @JsonFormat( pattern = "dd-MM-yyyy")Date checkIn,
-                                                     @RequestParam @JsonFormat( pattern = "dd-MM-yyyy") Date checkOut, @RequestParam Integer id) {
+                                                     @RequestParam @JsonFormat( pattern = "dd-MM-yyyy") Date checkOut,
+                                                     @RequestParam Integer id) {
         return ResponseEntity.ok(produtoService.listDate( checkIn, checkOut, id));
     }
 

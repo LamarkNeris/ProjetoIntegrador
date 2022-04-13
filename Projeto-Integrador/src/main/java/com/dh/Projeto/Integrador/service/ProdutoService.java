@@ -161,7 +161,7 @@ public class ProdutoService {
 
     public List<Reservas> listDate(Date checkIn, Date checkOut, Integer id) {
 
-        List<Reservas> listaData = reservaRepository.findBycheckInLessThanEqualAndCheckOutGreaterThanEqualAndProdutoId(checkIn, checkOut, id);
+        List<Reservas> listaData = reservaRepository.findBycheckInGreaterThanEqualAndCheckOutLessThanEqualAndCidadeId(checkIn, checkOut, id);
 
         return listaData;
     }

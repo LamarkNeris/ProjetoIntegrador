@@ -21,20 +21,21 @@ public class Reservas {
     @Temporal(TemporalType.DATE)
     private Date checkOut;
     @ManyToOne
-    @JoinColumn(name = "produto_id")
     private Produtos produto;
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
     private Usuarios usuario;
     private String horaCheckIn;
+    @ManyToOne
+    private Cidades cidade;
 
 
-    public Reservas(Date checkIn, Date checkOut, Produtos produto, Usuarios usuario, String horaCheckIn) {
+    public Reservas(Date checkIn, Date checkOut, Produtos produto, Usuarios usuario, String horaCheckIn, Cidades cidade) {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.produto = produto;
         this.usuario = usuario;
         this.horaCheckIn = horaCheckIn;
+        this.cidade = cidade;
     }
 
     public Reservas() {

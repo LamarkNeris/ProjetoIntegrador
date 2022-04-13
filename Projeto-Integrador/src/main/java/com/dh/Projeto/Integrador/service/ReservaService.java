@@ -2,6 +2,7 @@ package com.dh.Projeto.Integrador.service;
 
 import com.dh.Projeto.Integrador.DTO.ProdutoDto;
 import com.dh.Projeto.Integrador.DTO.ReservaDto;
+import com.dh.Projeto.Integrador.model.Cidades;
 import com.dh.Projeto.Integrador.model.Produtos;
 import com.dh.Projeto.Integrador.model.Reservas;
 import com.dh.Projeto.Integrador.model.Usuarios;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.awt.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,6 +40,7 @@ public class ReservaService {
 
         Produtos produto = produtoRepository.getById(reservaDto.getProdutoId());
         Usuarios usuario = usuarioRepository.getById(reservaDto.getUsuarioId());
+        Cidades cidade = cidadeRepository.getById(reservaDto.getCidadeId());
 
         Reservas reserva = new Reservas();
         reserva.setCheckIn(reservaDto.getCheckIn());
@@ -45,6 +48,8 @@ public class ReservaService {
         reserva.setProduto(produto);
         reserva.setUsuario(usuario);
         reserva.setHoraCheckIn(reservaDto.getHoraCheckIn());
+        reserva.setCidade(cidade);
+
 
         return reservaRepository.save(reserva);
 
