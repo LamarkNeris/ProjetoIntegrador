@@ -23,6 +23,10 @@ public class CategoriaController {
     public ResponseEntity<Categorias> post(@RequestBody Categorias categoria){
         return ResponseEntity.ok(categoriaService.create(categoria));
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Categorias> getId(@PathVariable Integer id){
+        return ResponseEntity.ok(categoriaService.selectId(id));
+    }
 
     @GetMapping
     public ResponseEntity<List<Categorias>> get(){

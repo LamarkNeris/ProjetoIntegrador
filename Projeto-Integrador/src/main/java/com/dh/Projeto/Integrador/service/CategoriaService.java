@@ -1,14 +1,13 @@
 package com.dh.Projeto.Integrador.service;
 
 import com.dh.Projeto.Integrador.model.Categorias;
-import com.dh.Projeto.Integrador.model.Produtos;
 import com.dh.Projeto.Integrador.repository.CategoriaRepository;
-import com.dh.Projeto.Integrador.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoriaService {
@@ -23,6 +22,10 @@ public class CategoriaService {
 
     public List<Categorias> selectAll(){
         return categoriaRepository.findAll();
+    }
+    
+    public Categorias selectId(Integer id){
+        return categoriaRepository.getById(id);
     }
 
 
