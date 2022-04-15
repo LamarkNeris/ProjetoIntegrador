@@ -25,11 +25,13 @@ public class ProdutoService {
     @Autowired
     private ReservaRepository reservaRepository;
 
+
     @Transactional
     public Produtos createProduto(ProdutoDto produtoDto) {
         Categorias categoria = categoriaRepository.getById(produtoDto.getCategoriaId());
         Cidades cidade = cidadeRepository.getById(produtoDto.getCidadeId());
         Caracteristicas caracteristicas = repository.save(produtoDto.getCaracteristicas());
+
         Produtos produto = new Produtos();
         produto.setNome(produtoDto.getNome());
         produto.setDescricao(produtoDto.getDescricao());
@@ -108,6 +110,11 @@ public class ProdutoService {
         return converteDto(produto);
     }
 
+    public String delete(Integer id){
+        produtoRepository.deleteById(id);
+        return ("Produto excluído com sucesso!");
+    }
+
     public List<ProdutoDto> listProdCateg(Integer id) {
         Categorias categoria = categoriaRepository.getById(id);
         List<Produtos> listProdutos = produtoRepository.listarProdutos(categoria);
@@ -159,11 +166,15 @@ public class ProdutoService {
         return listProDCity;
     }
 
-    public List<Reservas> listDate(Date checkIn, Date checkOut, Integer id) {
+    public Object listDate(Date checkIn, Date checkOut, Integer id) {
 
         List<Reservas> listaData = reservaRepository.findBycheckInGreaterThanEqualAndCheckOutLessThanEqualAndCidadeId(checkIn, checkOut, id);
 
-        return listaData;
+
+        if (listaData.isEmpty()){
+            return listProdCity(id);
+        }
+        return null;
     }
 
 }

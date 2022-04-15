@@ -2,7 +2,6 @@ package com.dh.Projeto.Integrador.controller;
 
 import com.dh.Projeto.Integrador.DTO.ProdutoDto;
 import com.dh.Projeto.Integrador.model.Produtos;
-import com.dh.Projeto.Integrador.model.Reservas;
 import com.dh.Projeto.Integrador.service.ProdutoService;
 import com.dh.Projeto.Integrador.service.ReservaService;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -51,15 +50,23 @@ public class ProdutoController {
     }
 
     @GetMapping("filtro")
-    public ResponseEntity<List<Reservas>> selectDate(@RequestParam @JsonFormat( pattern = "dd-MM-yyyy")Date checkIn,
-                                                     @RequestParam @JsonFormat( pattern = "dd-MM-yyyy") Date checkOut,
-                                                     @RequestParam Integer id) {
+    public Object selectDate(@RequestParam @JsonFormat( pattern = "dd-MM-yyyy")Date checkIn,
+                             @RequestParam @JsonFormat( pattern = "dd-MM-yyyy") Date checkOut,
+                             @RequestParam Integer id) {
+
+
         return ResponseEntity.ok(produtoService.listDate( checkIn, checkOut, id));
     }
 
     @PutMapping
     public ResponseEntity<Produtos> update(@RequestBody ProdutoDto produtoDto) {
         return ResponseEntity.ok(produtoService.updateProduto(produtoDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> remove(@PathVariable Integer id){
+        produtoService.delete(id);
+        return ResponseEntity.ok("Produto excluído com sucesso!");
     }
 
 

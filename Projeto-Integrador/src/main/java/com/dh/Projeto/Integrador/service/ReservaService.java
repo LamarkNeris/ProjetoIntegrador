@@ -78,6 +78,8 @@ public class ReservaService {
         }
         return listReservasIdProduto;
     }
+
+
     public List<ReservaDto> listarPorUsuario(Integer id) {
 
         Usuarios usuario = usuarioRepository.getById(id);
@@ -101,6 +103,7 @@ public class ReservaService {
         }
         return listReservasIdUsuario;
     }
+
 
 }
 

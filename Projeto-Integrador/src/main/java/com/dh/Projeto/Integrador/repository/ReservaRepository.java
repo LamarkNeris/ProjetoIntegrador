@@ -20,6 +20,7 @@ public interface ReservaRepository extends JpaRepository<Reservas, Integer> {
             "WHERE produtos.id=:id", nativeQuery = true)
     List<Reservas> listarReservasIdProduto(@Param("id") Integer id);
 
+
     @Query(value = "SELECT * FROM reservas " +
             "INNER JOIN usuarios " +
             "ON reservas.usuario_id=usuarios.id " +
@@ -27,6 +28,8 @@ public interface ReservaRepository extends JpaRepository<Reservas, Integer> {
     List<Reservas> listarReservasIdUsuario(@Param("id") Integer id);
 
 
-    List<Reservas> findBycheckInGreaterThanEqualAndCheckOutLessThanEqualAndCidadeId(Date checkIn, Date checkOut, Integer cidadeId);
+    List<Reservas> findBycheckInGreaterThanEqualAndCheckOutLessThanEqualAndCidadeId(Date checkIn, Date checkOut,
+                                                                                                Integer cidadeId);
+
 
 }
