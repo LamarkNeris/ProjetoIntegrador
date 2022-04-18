@@ -4,12 +4,12 @@ import com.dh.Projeto.Integrador.DTO.ProdutoDto;
 import com.dh.Projeto.Integrador.model.*;
 import com.dh.Projeto.Integrador.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Service
 public class ProdutoService {
@@ -170,11 +170,17 @@ public class ProdutoService {
 
         List<Reservas> listaData = reservaRepository.findBycheckInGreaterThanEqualAndCheckOutLessThanEqualAndCidadeId(checkIn, checkOut, id);
 
+        List<Produtos> listProdutos = produtoRepository.listProdutos(cidadeRepository.getById(id));
 
-        if (listaData.isEmpty()){
+        if (listaData.isEmpty()) {
             return listProdCity(id);
         }
-        return null;
+
+        listaData.forEach(reservado -> {
+            listProdutos.removeIf(disponivel -> disponivel.getId().equals(reservado.getProduto().getId()));
+        });
+
+        return  listProdutos;
     }
 
 }

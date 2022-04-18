@@ -1,5 +1,6 @@
 package com.dh.Projeto.Integrador.model;
 
+import com.dh.Projeto.Integrador.DTO.ProdutoDto;
 import lombok.Getter;
 import lombok.Setter;
 

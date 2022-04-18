@@ -5,7 +5,9 @@ import com.dh.Projeto.Integrador.model.Produtos;
 import com.dh.Projeto.Integrador.service.ProdutoService;
 import com.dh.Projeto.Integrador.service.ReservaService;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sipios.springsearch.anotation.SearchSpec;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +55,6 @@ public class ProdutoController {
     public Object selectDate(@RequestParam @JsonFormat( pattern = "dd-MM-yyyy")Date checkIn,
                              @RequestParam @JsonFormat( pattern = "dd-MM-yyyy") Date checkOut,
                              @RequestParam Integer id) {
-
 
         return ResponseEntity.ok(produtoService.listDate( checkIn, checkOut, id));
     }

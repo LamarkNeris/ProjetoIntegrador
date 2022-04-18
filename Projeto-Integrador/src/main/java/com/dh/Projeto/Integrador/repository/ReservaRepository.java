@@ -1,6 +1,7 @@
 package com.dh.Projeto.Integrador.repository;
 
 import com.dh.Projeto.Integrador.DTO.ProdutoDto;
+import com.dh.Projeto.Integrador.DTO.ReservaDto;
 import com.dh.Projeto.Integrador.model.Produtos;
 import com.dh.Projeto.Integrador.model.Reservas;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,7 +30,7 @@ public interface ReservaRepository extends JpaRepository<Reservas, Integer> {
 
 
     List<Reservas> findBycheckInGreaterThanEqualAndCheckOutLessThanEqualAndCidadeId(Date checkIn, Date checkOut,
-                                                                                                Integer cidadeId);
+                                                                                      Integer cidadeId);
 
 
 }
