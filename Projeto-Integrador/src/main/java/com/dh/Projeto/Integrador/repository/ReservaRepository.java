@@ -29,7 +29,7 @@ public interface ReservaRepository extends JpaRepository<Reservas, Integer> {
     List<Reservas> listarReservasIdUsuario(@Param("id") Integer id);
 
 
-    List<Reservas> findBycheckInGreaterThanEqualAndCheckOutLessThanEqualAndCidadeId(Date checkIn, Date checkOut,
+    List<Reservas> findByCheckOutGreaterThanEqualAndCheckInLessThanEqualAndCidadeId(Date checkIn, Date checkOut,
                                                                                       Integer cidadeId);
 
 
