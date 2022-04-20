@@ -47,6 +47,8 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
+        http.cors();
+
         }
 
     @Override
