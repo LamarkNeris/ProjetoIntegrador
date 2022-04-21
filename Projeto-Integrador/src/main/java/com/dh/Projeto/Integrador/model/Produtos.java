@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.awt.font.TextAttribute;
 import java.util.List;
 
 @Getter
@@ -28,10 +29,11 @@ public class Produtos {
     private double avaliacao;
     private String latitude;
     private String longitude;
+    private Double preco;
 
 
     public Produtos(String nome, String descricao, List<Imagens> imagens, Categorias categorias, Caracteristicas caracteristicas,
-                    Cidades cidades, double avaliacao, String latitude, String longitude) {
+                    Cidades cidades, double avaliacao, String latitude, String longitude, Double preco) {
         this.nome = nome;
         this.descricao = descricao;
         this.imagens = imagens;
@@ -41,8 +43,10 @@ public class Produtos {
         this.avaliacao = avaliacao;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.preco = preco;
 
     }
+
     public Produtos(){
 
     }

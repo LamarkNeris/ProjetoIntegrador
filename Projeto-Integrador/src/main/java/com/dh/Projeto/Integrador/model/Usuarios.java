@@ -23,7 +23,7 @@ public class Usuarios {
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "funcoes_nome")
     private Funcoes funcoes;
 

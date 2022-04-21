@@ -43,6 +43,7 @@ public class ProdutoService {
         produto.setAvaliacao(produtoDto.getAvaliacao());
         produto.setLatitude(produtoDto.getLatitude());
         produto.setLongitude(produtoDto.getLongitude());
+        produto.setPreco(produto.getPreco());
 
         return produtoRepository.save(produto);
 
@@ -62,6 +63,7 @@ public class ProdutoService {
         produto.setAvaliacao(produtoDto.getAvaliacao());
         produto.setLatitude(produtoDto.getLatitude());
         produto.setLongitude(produtoDto.getLongitude());
+        produto.setPreco(produto.getPreco());
 
         return produtoRepository.save(produto);
     }
@@ -79,6 +81,7 @@ public class ProdutoService {
         produtoDto.setAvaliacao(produtos.getAvaliacao());
         produtoDto.setLatitude(produtos.getLatitude());
         produtoDto.setLongitude(produtos.getLongitude());
+        produtoDto.setPreco(produtos.getPreco());
 
         return produtoDto;
     }
@@ -99,6 +102,7 @@ public class ProdutoService {
             produtosDto.setAvaliacao(listProdutos.get(i).getAvaliacao());
             produtosDto.setLatitude(listProdutos.get(i).getLatitude());
             produtosDto.setLongitude(listProdutos.get(i).getLongitude());
+            produtosDto.setPreco(listProdutos.get(i).getPreco());
 
             listProdutosDto.add(produtosDto);
         }
@@ -133,6 +137,7 @@ public class ProdutoService {
                 produtosDto.setAvaliacao(listProdutos.get(i).getAvaliacao());
                 produtosDto.setLatitude(listProdutos.get(i).getLatitude());
                 produtosDto.setLongitude(listProdutos.get(i).getLongitude());
+                produtosDto.setPreco(listProdutos.get(i).getPreco());
 
                 listProDto.add(produtosDto);
             }
@@ -158,6 +163,7 @@ public class ProdutoService {
                 produtosDto.setAvaliacao(listProdutos.get(i).getAvaliacao());
                 produtosDto.setLatitude(listProdutos.get(i).getLatitude());
                 produtosDto.setLongitude(listProdutos.get(i).getLongitude());
+                produtosDto.setPreco(listProdutos.get(i).getPreco());
 
                 listProDCity.add(produtosDto);
 

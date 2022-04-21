@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class ProdutoDto {
     private double avaliacao;
     private String latitude;
     private String longitude;
+    private Double preco;
 
 
 }
