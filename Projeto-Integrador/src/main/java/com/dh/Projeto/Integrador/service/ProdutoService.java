@@ -4,12 +4,10 @@ import com.dh.Projeto.Integrador.DTO.ProdutoDto;
 import com.dh.Projeto.Integrador.model.*;
 import com.dh.Projeto.Integrador.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
-import java.util.stream.Stream;
 
 @Service
 public class ProdutoService {
@@ -43,12 +41,13 @@ public class ProdutoService {
         produto.setAvaliacao(produtoDto.getAvaliacao());
         produto.setLatitude(produtoDto.getLatitude());
         produto.setLongitude(produtoDto.getLongitude());
-        produto.setPreco(produto.getPreco());
+        produto.setPreco(produtoDto.getPreco());
 
         return produtoRepository.save(produto);
 
     }
-    public Produtos updateProduto(ProdutoDto produtoDto){
+
+    public Produtos updateProduto(ProdutoDto produtoDto) {
         Produtos produto = produtoRepository.getById(produtoDto.getId());
         Categorias categoria = categoriaRepository.getById(produtoDto.getCategoriaId());
         Cidades cidade = cidadeRepository.getById(produtoDto.getCidadeId());
@@ -63,7 +62,7 @@ public class ProdutoService {
         produto.setAvaliacao(produtoDto.getAvaliacao());
         produto.setLatitude(produtoDto.getLatitude());
         produto.setLongitude(produtoDto.getLongitude());
-        produto.setPreco(produto.getPreco());
+        produto.setPreco(produtoDto.getPreco());
 
         return produtoRepository.save(produto);
     }
@@ -114,7 +113,7 @@ public class ProdutoService {
         return converteDto(produto);
     }
 
-    public String delete(Integer id){
+    public String delete(Integer id) {
         produtoRepository.deleteById(id);
         return ("Produto excluído com sucesso!");
     }
@@ -186,7 +185,7 @@ public class ProdutoService {
             listProdutos.removeIf(disponivel -> disponivel.getId().equals(reservado.getProduto().getId()));
         });
 
-        return  listProdutos;
+        return listProdutos;
     }
 
 }

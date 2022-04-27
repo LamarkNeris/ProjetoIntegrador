@@ -36,7 +36,7 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/usuario/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/produto/**", "/cidade/**","/categoria/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/produto/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/categoria/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/produto/**", "/reserva/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/cidade/**").permitAll()

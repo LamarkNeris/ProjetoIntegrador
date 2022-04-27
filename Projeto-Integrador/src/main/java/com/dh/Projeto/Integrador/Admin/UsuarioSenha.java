@@ -10,7 +10,6 @@ import lombok.Setter;
 
 public class UsuarioSenha {
 
-
     private String email;
     private String senha;
 

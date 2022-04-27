@@ -29,11 +29,11 @@ public class Produtos {
     private double avaliacao;
     private String latitude;
     private String longitude;
-    private Double preco;
+    private double preco;
 
 
     public Produtos(String nome, String descricao, List<Imagens> imagens, Categorias categorias, Caracteristicas caracteristicas,
-                    Cidades cidades, double avaliacao, String latitude, String longitude, Double preco) {
+                    Cidades cidades, double avaliacao, String latitude, String longitude, double preco) {
         this.nome = nome;
         this.descricao = descricao;
         this.imagens = imagens;

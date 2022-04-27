@@ -24,7 +24,7 @@ public class ProdutoDto {
     private double avaliacao;
     private String latitude;
     private String longitude;
-    private Double preco;
+    private double preco;
 
 
 }
